@@ -1,0 +1,46 @@
+Starting >>> transport_system
+running egg_info
+creating ../../build/transport_system/transport_system.egg-info
+writing ../../build/transport_system/transport_system.egg-info/PKG-INFO
+writing dependency_links to ../../build/transport_system/transport_system.egg-info/dependency_links.txt
+writing entry points to ../../build/transport_system/transport_system.egg-info/entry_points.txt
+writing requirements to ../../build/transport_system/transport_system.egg-info/requires.txt
+writing top-level names to ../../build/transport_system/transport_system.egg-info/top_level.txt
+writing manifest file '../../build/transport_system/transport_system.egg-info/SOURCES.txt'
+reading manifest file '../../build/transport_system/transport_system.egg-info/SOURCES.txt'
+writing manifest file '../../build/transport_system/transport_system.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/carroy/ros_transport_ws/build/transport_system/build
+creating /home/carroy/ros_transport_ws/build/transport_system/build/lib
+creating /home/carroy/ros_transport_ws/build/transport_system/build/lib/transport_system
+copying transport_system/__init__.py -> /home/carroy/ros_transport_ws/build/transport_system/build/lib/transport_system
+copying transport_system/arm_node.py -> /home/carroy/ros_transport_ws/build/transport_system/build/lib/transport_system
+copying transport_system/robot_node.py -> /home/carroy/ros_transport_ws/build/transport_system/build/lib/transport_system
+copying transport_system/camera_node.py -> /home/carroy/ros_transport_ws/build/transport_system/build/lib/transport_system
+running install
+running install_lib
+creating /home/carroy/ros_transport_ws/install/transport_system/lib/python3.12/site-packages/transport_system
+copying /home/carroy/ros_transport_ws/build/transport_system/build/lib/transport_system/__init__.py -> /home/carroy/ros_transport_ws/install/transport_system/lib/python3.12/site-packages/transport_system
+copying /home/carroy/ros_transport_ws/build/transport_system/build/lib/transport_system/arm_node.py -> /home/carroy/ros_transport_ws/install/transport_system/lib/python3.12/site-packages/transport_system
+copying /home/carroy/ros_transport_ws/build/transport_system/build/lib/transport_system/robot_node.py -> /home/carroy/ros_transport_ws/install/transport_system/lib/python3.12/site-packages/transport_system
+copying /home/carroy/ros_transport_ws/build/transport_system/build/lib/transport_system/camera_node.py -> /home/carroy/ros_transport_ws/install/transport_system/lib/python3.12/site-packages/transport_system
+byte-compiling /home/carroy/ros_transport_ws/install/transport_system/lib/python3.12/site-packages/transport_system/__init__.py to __init__.cpython-312.pyc
+byte-compiling /home/carroy/ros_transport_ws/install/transport_system/lib/python3.12/site-packages/transport_system/arm_node.py to arm_node.cpython-312.pyc
+byte-compiling /home/carroy/ros_transport_ws/install/transport_system/lib/python3.12/site-packages/transport_system/robot_node.py to robot_node.cpython-312.pyc
+byte-compiling /home/carroy/ros_transport_ws/install/transport_system/lib/python3.12/site-packages/transport_system/camera_node.py to camera_node.cpython-312.pyc
+running install_data
+copying package.xml -> /home/carroy/ros_transport_ws/install/transport_system/share/transport_system
+copying resource/transport_system -> /home/carroy/ros_transport_ws/install/transport_system/share/transport_system
+creating /home/carroy/ros_transport_ws/install/transport_system/share/transport_system/action
+copying action/MoveToPosition.action -> /home/carroy/ros_transport_ws/install/transport_system/share/transport_system/action
+running install_egg_info
+Copying ../../build/transport_system/transport_system.egg-info to /home/carroy/ros_transport_ws/install/transport_system/lib/python3.12/site-packages/transport_system-0.0.0-py3.12.egg-info
+running install_scripts
+Installing arm_node script to /home/carroy/ros_transport_ws/install/transport_system/lib/transport_system
+Installing camera_node script to /home/carroy/ros_transport_ws/install/transport_system/lib/transport_system
+Installing robot_node script to /home/carroy/ros_transport_ws/install/transport_system/lib/transport_system
+writing list of installed files to '/home/carroy/ros_transport_ws/build/transport_system/install.log'
+Finished <<< transport_system [0.87s]
+
+Summary: 1 package finished [0.98s]
