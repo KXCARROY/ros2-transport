@@ -12,6 +12,7 @@ setup(
        ('share/' + package_name, ['package.xml']),
        (os.path.join('share', package_name), ['resource/' + package_name]),
        (os.path.join('share', package_name, 'action'), glob('action/*.action')),
+       (os.path.join('share', package_name, 'launch'), glob('launch/*.py')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -25,6 +26,7 @@ setup(
            'camera_node = transport_system.camera_node:main',
            'arm_node = transport_system.arm_node:main',
            'robot_node = transport_system.robot_node:main',
+           'supervisor_gui = transport_system.supervisor_gui:main',
         ],
     },
 )
