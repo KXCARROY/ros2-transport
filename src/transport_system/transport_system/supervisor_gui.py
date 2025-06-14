@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
@@ -13,6 +11,10 @@ class SupervisorNode(Node):
             String, 'detected_object', self.object_detected_callback, 10)
         self.cli = self.create_client(AddTwoInts, 'pickup_object')
 
+        # Pour ne traiter qu’un objet à la fois
+        self.is_busy = False
+        self.current_object = None
+
         # Interface
         self.root = tk.Tk()
         self.root.title("Superviseur - Transport d’objet")
@@ -25,7 +27,7 @@ class SupervisorNode(Node):
         self.object_pos = 400
         self.drop_pos = 100
 
-        # Éléments
+        # Éléments visuels
         self.robot = self.canvas.create_oval(self.robot_start, 80, self.robot_start+30, 110, fill='blue', tags='robot')
         self.object = self.canvas.create_rectangle(self.object_pos, 85, self.object_pos+20, 105, fill='red', tags='object')
         self.drop_zone = self.canvas.create_rectangle(self.drop_pos, 150, self.drop_pos+40, 170, fill='lightgreen')
@@ -48,17 +50,22 @@ class SupervisorNode(Node):
         self.status_label.config(text=message)
 
     def object_detected_callback(self, msg):
+        if self.is_busy:
+            return  # ignore si déjà en traitement
+
+        self.is_busy = True
         obj_id = msg.data
+        self.current_object = obj_id
         self.log(f"[SUPERVISEUR] Objet détecté : {obj_id}")
-        self.canvas.itemconfig(self.object, fill='red')
+        self.canvas.itemconfig(self.object, state='normal', fill='red')
         self.call_arm_service(obj_id)
 
     def call_arm_service(self, obj_id):
         while not self.cli.wait_for_service(timeout_sec=1.0):
             self.log('Service pickup_object non disponible, attente...')
         request = AddTwoInts.Request()
-        request.a = len(obj_id)  # simulation de l’ID objet
-        request.b = 5  # force
+        request.a = len(obj_id)
+        request.b = 5
         self.future = self.cli.call_async(request)
         self.future.add_done_callback(self.after_pickup)
 
@@ -69,6 +76,7 @@ class SupervisorNode(Node):
             self.move_robot_to_object()
         except Exception as e:
             self.log(f"[ERREUR] Service échoué : {e}")
+            self.is_busy = False  # débloquer si erreur
 
     def move_robot_to_object(self):
         x1, y1, x2, y2 = self.canvas.coords(self.robot)
@@ -87,6 +95,7 @@ class SupervisorNode(Node):
         else:
             self.canvas.create_rectangle(self.drop_pos+10, 155, self.drop_pos+30, 165, fill='green', tags='depose')
             self.log("[SUPERVISEUR] Objet déposé en zone verte ✅")
+            self.is_busy = False  # débloquer après dépôt
 
 def main(args=None):
     rclpy.init(args=args)
@@ -97,4 +106,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-
